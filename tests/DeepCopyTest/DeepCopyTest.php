@@ -542,6 +542,27 @@ class DeepCopyTest extends TestCase
         $this->assertNotEquals($copy->getFoo(), $object->getFoo());
     }
 
+    /**
+     * @requires PHP 8.1
+     */
+    public function test_it_can_copy_object_with_private_property()
+    {
+        $object = new class extends \stdClass {
+            public readonly string $foo;
+
+            public function __construct()
+            {
+                $this->foo = 'foo';
+            }
+        };
+
+        $deepCopy = new DeepCopy();
+
+        $copy = $deepCopy->copy($object);
+
+        $this->assertEqualButNotSame($object, $copy);
+    }
+
     private function assertEqualButNotSame($expected, $val)
     {
         $this->assertEquals($expected, $val);

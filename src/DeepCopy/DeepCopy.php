@@ -225,7 +225,7 @@ class DeepCopy
         }
 
         // Ignore readonly properties
-        if (method_exists($property, 'isReadOnly') && !$property->isReadOnly()) {
+        if (method_exists($property, 'isReadOnly') && $property->isReadOnly()) {
             return;
         }
 
