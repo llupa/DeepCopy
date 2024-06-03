@@ -545,7 +545,7 @@ class DeepCopyTest extends TestCase
     /**
      * @requires PHP 8.1
      */
-    public function test_it_can_copy_object_with_private_property()
+    public function test_it_can_copy_object_with_readonly_property()
     {
         $object = new class extends \stdClass {
             public readonly string $foo;
